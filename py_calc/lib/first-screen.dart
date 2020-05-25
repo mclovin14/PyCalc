@@ -6,6 +6,33 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+  TextEditingController _primeiroNumeroController = TextEditingController();
+  TextEditingController _segundoNumeroController = TextEditingController();
+
+  _soma() {
+    var primeroNumero = _primeiroNumeroController.text;
+    var segundoNumero = _segundoNumeroController.text;
+
+    var resultado = int.parse(primeroNumero) + int.parse(segundoNumero);
+
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Color(0xFFFFCDD2),
+          // Retorna o texto que foi informado
+          // usando o TextEditingController.
+          content: Text(resultado.toString(),
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 20,
+              ),
+              textAlign: TextAlign.center),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,37 +53,25 @@ class _FirstScreenState extends State<FirstScreen> {
                   padding: EdgeInsets.only(bottom: 8),
                   child: TextField(
                     autofocus: true,
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.number,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
-                      hintText: "Dinheiro",
+                      hintText: "Número 1",
                     ),
-                    //controller: ,
+                    controller: _primeiroNumeroController,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: TextField(
-                    autofocus: true,
-                    keyboardType: TextInputType.emailAddress,
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      hintText: "Mulheres",
-                    ),
-                    //controller: ,
-                  )
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: TextField(
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      hintText: "Oportunidade",
-                    ),
-                    //controller: ,
-                  ),
-                ),
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: TextField(
+                      autofocus: true,
+                      keyboardType: TextInputType.number,
+                      style: TextStyle(fontSize: 20),
+                      decoration: InputDecoration(
+                        hintText: "Número 2",
+                      ),
+                      controller: _segundoNumeroController,
+                    )),
                 Padding(
                   padding: EdgeInsets.only(top: 16, bottom: 10),
                   child: Row(
@@ -64,14 +79,14 @@ class _FirstScreenState extends State<FirstScreen> {
                     children: <Widget>[
                       RaisedButton(
                           child: Text(
-                            "Ciclo de Strol",
+                            "Soma",
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                           color: Colors.green,
                           padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32)),
-                          onPressed: () {}),
+                          onPressed: _soma),
                     ],
                   ),
                 ),
