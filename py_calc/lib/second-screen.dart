@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:py_calc/second-screen.dart';
 
-class FirstScreen extends StatefulWidget {
+class SecondScreen extends StatefulWidget {
   @override
-  _FirstScreenState createState() => _FirstScreenState();
+  _SecondScreenState createState() => _SecondScreenState();
 }
 
-class _FirstScreenState extends State<FirstScreen> {
+class _SecondScreenState extends State<SecondScreen> {
   TextEditingController _primeiroNumeroController = TextEditingController();
   TextEditingController _segundoNumeroController = TextEditingController();
 
-  _soma() {
+  _subtracao() {
     var primeroNumero = _primeiroNumeroController.text;
     var segundoNumero = _segundoNumeroController.text;
 
-    var resultado = int.parse(primeroNumero) + int.parse(segundoNumero);
+    var resultado = int.parse(primeroNumero) - int.parse(segundoNumero);
 
     return showDialog(
       context: context,
@@ -80,29 +79,14 @@ class _FirstScreenState extends State<FirstScreen> {
                     children: <Widget>[
                       RaisedButton(
                           child: Text(
-                            "Soma",
+                            "Subtração",
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                           color: Colors.green,
                           padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32)),
-                          onPressed: _soma),
-                      RaisedButton(
-                          child: Text(
-                            "Próxima Tela",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          color: Colors.green,
-                          padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32)),
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      SecondScreen()) //função anonima curta que instacia a tela secudaria
-                              )),
+                          onPressed: _subtracao),
                     ],
                   ),
                 ),
